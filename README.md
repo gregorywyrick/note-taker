@@ -10,7 +10,7 @@ In order to install this application, the user must first clone this repository 
 
 ## Usage
 
-To use this application the user must first navigate to the deployed Heroku page (found here: ). Once there, simply click the "Get Started" button that appears on screen. From there the user can add a title for their new note, as well as whatever contents they choose in the body. To keep track of this note, the user will click the save icon in the top right corner of the page. The note will then appear on the left side of the screen in a list format.
+To use this application the user must first navigate to the deployed Heroku page (found here: https://gw-notes-taker.herokuapp.com/). Once there, simply click the "Get Started" button that appears on screen. From there the user can add a title for their new note, as well as whatever contents they choose in the body. To keep track of this note, the user will click the save icon in the top right corner of the page. The note will then appear on the left side of the screen in a list format.
 
 ## Credit
 
