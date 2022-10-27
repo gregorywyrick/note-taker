@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { createNewNote, deleteNote } = require('../../lib/notes');
+const { createNewNote, deleteNote, updateNote } = require('../../lib/notes');
+const id = require('uuid');
 const { notes } = require('../../db/db.json');
 
 router.get('/notes', (req, res) => {
@@ -7,16 +8,25 @@ router.get('/notes', (req, res) => {
     res.json(results); 
 });
 router.post('/notes', (req, res) => {
-    if(notes){
-        req.body.id = notes.length.toString();
-    }
-    else {req.body.id = 0}
-    res.json(createNewNote(req.body, notes));
+    req.body.id = id.v4();
+    const note = createNewNote(req.body, notes);
+    res.json(note);
 });
-router.delete('/notes/:id', async (req, res) => {
-    const { id } = req.params
-    notes = await deleteNote(id, notes);
-    res.json(notes);
+router.delete('/notes/:id', (req, res) => {
+    const result = deleteNote(req.params.id, notes);
+    if (result) {
+        res.json(result);
+    } else {
+        res.send(404);
+    }
+});
+router.put('/notes/:id', (req, res) => {
+    const result = updateNote(req.params.id, notes);
+    if (result) {
+        res.json(result);
+    } else {
+        res.send(404);
+    }
 });
 
 module.exports = router;
