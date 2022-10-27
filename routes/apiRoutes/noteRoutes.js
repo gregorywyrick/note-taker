@@ -5,7 +5,11 @@ const { notes } = require('../../db/db.json');
 
 router.get('/notes', (req, res) => {
     const results = notes;
-    res.json(results); 
+    if (req.query) {
+        res.json(results);
+    }  else {
+        res.send(404);
+    }
 });
 router.post('/notes', (req, res) => {
     req.body.id = id.v4();
