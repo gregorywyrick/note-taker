@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { createNewNote, validateNote, deleteNote, updateNote } = require('../../lib/notes');
+const { createNewNote, deleteNote, updateNote } = require('../../lib/notes');
 const id = require('uuid');
 const { notes } = require('../../db/db.json');
 
@@ -13,12 +13,8 @@ router.get('/notes', (req, res) => {
 });
 router.post('/notes', (req, res) => {
     req.body.id = id.v4();
-    if (!validateNote(req.body)) {
-        res.status(400).send('This is not a proper note.');
-    } else {
-        const note = createNewNote(req.body, notes);
-        res.json(note);
-    }
+    const note = createNewNote(req.body, notes);
+    res.json(note);
 });
 router.delete('/notes/:id', (req, res) => {
     const result = deleteNote(req.params.id, notes);
